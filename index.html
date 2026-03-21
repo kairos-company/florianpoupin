@@ -103,12 +103,12 @@
             align-items: center;
             justify-content: space-between;
             height: 5rem;
-            background: #4c0a26;
+            background: var(--bordeaux-fonce);
             transition: background 0.4s ease, backdrop-filter 0.4s;
         }
 
         .header.scrolled {
-            background: rgba(76, 10, 38, 0.97);
+            background: rgba(26, 0, 8, 0.97);
             backdrop-filter: blur(12px);
         }
 
@@ -376,6 +376,23 @@
 
         .btn-or:hover { background: transparent; color: var(--or); }
 
+        .btn-or-outline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--or);
+            background: transparent;
+            padding: 1rem 2.6rem;
+            text-decoration: none;
+            border: 1px solid var(--or);
+            display: inline-block;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .btn-or-outline:hover { background: var(--or); color: var(--bordeaux-fonce); }
+
         .btn-contour {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.88rem;
@@ -637,9 +654,9 @@
         .apropos-visuel-img {
             position: absolute;
             inset: 0;
-            background-image: url('images/Travail_du_cheval_en_liberté.jpg');
+            background-image: url('images/apropos.png');
             background-size: cover;
-            background-position: center top;
+            background-position: center center;
             transition: transform 0.8s ease;
         }
 
@@ -832,37 +849,200 @@
         }
 
         /* ===== ZONES ===== */
-        .zones {
+        /* ===== TÉMOIGNAGES ===== */
+        .temoignages {
             background: var(--bordeaux-fonce);
-            padding: 6rem 3rem;
-            text-align: center;
+            padding: 7rem 3rem;
+            overflow: hidden;
+            position: relative;
         }
 
-        .zones-inner { max-width: 720px; margin: 0 auto; }
-        .zones .section-eyebrow { color: var(--or); }
-        .zones .section-title   { color: var(--blanc); }
+        .temoignages::before {
+            content: '';
+            position: absolute;
+            top: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 280px;
+            border: 1px solid rgba(201, 168, 76, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
 
-        .zones-tags {
+        .temoignages::after {
+            content: '';
+            position: absolute;
+            top: 5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(201, 168, 76, 0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .temoignages-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .temoignages-header {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.7rem;
-            margin-top: 2.5rem;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
         }
 
-        .zones-tag {
+        .temoignages-header-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.3), transparent);
+        }
+
+        .temoignages-header-center {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .temoignages-header-titre {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.84rem;
-            letter-spacing: 0.14em;
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            font-weight: 300;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(248, 245, 239, 0.72);
-            border: 1px solid rgba(201, 168, 76, 0.25);
-            padding: 0.45rem 1.4rem;
+            color: var(--blanc);
+            white-space: nowrap;
         }
 
-        .zones-tag--principal {
+        .temoignages-header-titre em {
+            font-style: normal;
             color: var(--or);
-            border-color: var(--or);
+        }
+
+        .temoignages-header-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.92rem;
+            letter-spacing: 0.08em;
+            color: rgba(248, 245, 239, 0.45);
+            margin-top: 0.4rem;
+        }
+
+        .temoignages-carousel {
+            position: relative;
+        }
+
+        .temoignage {
+            display: none;
+            animation: temoFadeIn 0.5s ease;
+        }
+
+        .temoignage.active { display: block; }
+
+        @keyframes temoFadeIn {
+            from { opacity: 0; transform: translateX(2rem); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .temoignage-corps {
+            position: relative;
+            padding: 2.5rem 3rem 2.5rem 4rem;
+            border-left: 2px solid rgba(201, 168, 76, 0.25);
+        }
+
+        .temoignage-corps::before {
+            content: '\201C';
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--or);
+            opacity: 0.18;
+        }
+
+        .temoignage-texte {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.18rem;
+            line-height: 1.95;
+            color: rgba(248, 245, 239, 0.85);
+            font-style: normal;
+        }
+
+        .temoignage-signature {
+            display: flex;
+            align-items: baseline;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            padding-left: 4rem;
+        }
+
+        .temoignage-auteur {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--or);
+        }
+
+        .temoignage-tiret {
+            width: 2rem;
+            height: 1px;
+            background: rgba(201, 168, 76, 0.4);
+            flex-shrink: 0;
+        }
+
+        .temoignage-origine {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.95rem;
+            color: rgba(248, 245, 239, 0.55);
+            letter-spacing: 0.02em;
+        }
+
+        .temoignages-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-left: 4rem;
+        }
+
+        .temoignages-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .temoignages-dot {
+            width: 28px;
+            height: 3px;
+            border: none;
+            border-radius: 2px;
+            background: rgba(201, 168, 76, 0.2);
+            cursor: pointer;
+            transition: background 0.3s ease, width 0.3s ease;
+            padding: 0;
+        }
+
+        .temoignages-dot.active {
+            background: var(--or);
+            width: 42px;
+        }
+
+        .temoignages-compteur {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            color: rgba(248, 245, 239, 0.4);
+        }
+
+        .temoignages-compteur strong {
+            color: var(--or);
+            font-weight: 400;
         }
 
 
@@ -1008,7 +1188,7 @@
             .disc-card--grand { grid-column: auto; grid-row: auto; }
             .disc-card--grand .disc-img { aspect-ratio: 4/3; }
             .formations { padding: 5rem 1.5rem; }
-            .zones-infos { flex-direction: column; gap: 2rem; }
+            .temoignage-texte { font-size: 0.95rem; }
             .footer-grille { grid-template-columns: 1fr; }
         }
     </style>
@@ -1027,27 +1207,34 @@
                 <li class="has-dropdown">
                     <a href="/enseignements/">Enseignements</a>
                     <ul class="nav-dropdown">
-                        <li><a href="/enseignements/">Cours &amp; Stages</a></li>
-                        <li><a href="/academie-equestre/">Académie Équestre</a></li>
-                        <li><a href="/disciplines-equestres/">Disciplines équestres</a></li>
+                        <li><a href="/enseignements/cours-equitation/">Cours d'équitation</a></li>
+                        <li><a href="/enseignements/stages-equitation/">Stages</a></li>
+                        <li><a href="/enseignements/academie-equestre/">Académie équestre</a></li>
+                        <li><a href="/enseignements/examens-federaux.html">Examens fédéraux</a></li>
+                        <li><a href="/enseignements/equitation-hivernale.html">Équitation hivernale</a></li>
                     </ul>
                 </li>
 
                 <li class="has-dropdown">
                     <a href="/accompagnements/">Accompagnements</a>
                     <ul class="nav-dropdown">
-                        <li><a href="/accompagnement-cheval/">Pour le cheval</a></li>
-                        <li><a href="/accompagnement-cavalier/">Pour le cavalier</a></li>
+                        <li><a href="/accompagnements/pre-debourrage.html">Pré-débourrage</a></li>
+                        <li><a href="/accompagnements/debourrage.html">Débourrage</a></li>
+                        <li><a href="/accompagnements/biomecanique-equestre.html">Biomécanique équestre</a></li>
+                        <li><a href="/accompagnements/problematiques-resolution/">Problématiques &amp; résolution</a></li>
+                        <li><a href="/accompagnements/programme-progression.html">Programme de progression</a></li>
                     </ul>
                 </li>
+
+                <li><a href="/disciplines-equestres/">Disciplines</a></li>
 
                 <li class="has-dropdown">
                     <a href="/soins-cheval/">Soins &amp; Bien-être</a>
                     <ul class="nav-dropdown">
                         <li><a href="/soins-cheval/">Soins du cheval</a></li>
                         <li><a href="/soins-cavalier/">Soins du cavalier</a></li>
-                        <li><a href="/soins-cheval-cavalier/">Soins du couple</a></li>
-                        <li><a href="/soins-par-le-cheval/">Thérapie par le cheval</a></li>
+                        <li><a href="/soins-cheval-cavalier/">Soins du couple cheval-cavalier</a></li>
+                        <li><a href="/therapie-cheval/">Soins par le cheval</a></li>
                     </ul>
                 </li>
 
@@ -1107,7 +1294,7 @@
 
             <!-- Grande carte -->
             <div class="disc-card disc-card--grand reveal">
-                <img class="disc-img" src="images/la_voltige_cosaque.jpg" alt="Voltige cosaque — équitation de tradition française" loading="lazy">
+                <img class="disc-img" src="images/disc-01-equitation.jpg" alt="Voltige cosaque — équitation de tradition française" loading="lazy">
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">01</span>
@@ -1119,7 +1306,7 @@
 
             <!-- Joutes -->
             <div class="disc-card reveal reveal-d1">
-                <img class="disc-img" src="images/Le-secret-de-la-lance-ronde-puy-du-fou-4.jpg" alt="Joutes médiévales à cheval" loading="lazy">
+                <img class="disc-img" src="images/disc-02-joutes.jpg" alt="Joutes médiévales à cheval" loading="lazy">
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">02</span>
@@ -1131,7 +1318,7 @@
 
             <!-- Chars romains -->
             <div class="disc-card reveal reveal-d2">
-                <img class="disc-img" src="images/le-signe-du-triomphe.jpg" alt="Attelage — course de chars" loading="lazy">
+                <img class="disc-img" src="images/disc-03-attelage.jpg" alt="Attelage — course de chars" loading="lazy">
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">03</span>
@@ -1143,7 +1330,7 @@
 
             <!-- Fauconnerie -->
             <div class="disc-card reveal reveal-d1">
-                <img class="disc-img" src="images/fauconnerie-medievale.jpg.webp" alt="Fauconnerie — spectacle Puy du Fou" loading="lazy" style="object-position: center top;">
+                <img class="disc-img" src="images/disc-04-fauconnerie.jpg" alt="Fauconnerie — spectacle Puy du Fou" loading="lazy" style="object-position: center top;">
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">04</span>
@@ -1155,7 +1342,7 @@
 
             <!-- Reconstitution -->
             <div class="disc-card reveal reveal-d2">
-                <img class="disc-img" src="images/mousquetaire-de-richelieu-julien-benamou.jpg" alt="Reconstitution historique médiévale" loading="lazy" style="object-position: center top;">
+                <img class="disc-img" src="images/disc-05-reconstitution.jpg" alt="Reconstitution historique médiévale" loading="lazy" style="object-position: center top;">
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">05</span>
@@ -1260,23 +1447,159 @@
         </div>
     </section>
 
-    <!-- ZONES D'INTERVENTION -->
-    <section class="zones">
-        <div class="zones-inner">
-            <span class="section-eyebrow reveal">Zones d'intervention</span>
-            <h2 class="section-title reveal">Florian se <em>déplace</em></h2>
+    <!-- TÉMOIGNAGES -->
+    <section class="temoignages">
+        <div class="temoignages-inner">
 
-            <div class="zones-tags reveal">
-                <span class="zones-tag zones-tag--principal">Doubs — Jura (base)</span>
-                <span class="zones-tag">Île-de-France</span>
-                <span class="zones-tag">Bretagne</span>
-                <span class="zones-tag">Nouvelle-Aquitaine</span>
-                <span class="zones-tag">Occitanie</span>
-                <span class="zones-tag">PACA</span>
-                <span class="zones-tag">Grand Est</span>
-                <span class="zones-tag">Suisse</span>
-                <span class="zones-tag">Belgique</span>
-                <span class="zones-tag">Toute la France</span>
+            <div class="temoignages-header reveal">
+                <div class="temoignages-header-line"></div>
+                <div class="temoignages-header-center">
+                    <h2 class="temoignages-header-titre">Cavaliers & <em>écuyers</em></h2>
+                    <p class="temoignages-header-sub">Ils témoignent</p>
+                </div>
+                <div class="temoignages-header-line"></div>
+            </div>
+
+            <div class="temoignages-carousel reveal">
+
+                <div class="temoignage active">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Sensible, à l'écoute, respectueux autant du cheval que du cavalier, Florian fait partie pour moi des enseignants qui ont instantanément cette capacité et la gentillesse de rassurer son élève, de prendre en charge ses inquiétudes et d'adapter son enseignement au besoin de la personne en face. Tout en simplicité et efficacité, c'est un accompagnement privilégié pour progresser dans un environnement humain d'une grande bienveillance dont le monde équestre a tellement besoin. Foncez les yeux fermés et vous vous surprendrez à avoir autant travaillé sur vous-même que sur votre cheval.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Laetitia Trosset</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière professionnelle, enseignante DEJEPS dressage, Cadre Noir de Saumur — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Florian n'est pas un enseignant mais un artiste de la transmission. Héritier de la Tradition, il sublime un cours en expérience inédite : celle d'une authentique rencontre avec son cheval. Auprès de lui, chevaux et cavaliers renouent avec leur expressivité parfois rendue timide, ou jugulée par des années de pratique sportive privilégiant la seule efficacité, les routines réflexes, l'impensé de gestes réitérés. Florian quant à lui nous invite, avec tact, intelligence et souplesse, à accueillir sans réserve QUI est notre cheval : non sans émotion et bouleversement dans nos représentations. Ainsi un cheval ne rétive pas mais répond, aussi nos aides se doivent de mériter leur nom, et la « technique » apparaît nulle et inconsistante sans l'habiter d'abord et la ressentir ensuite. Ce qui pourrait paraître extrêmement intimidant comme approche auprès du cavalier amateur, confortable dans ses habitudes et rituels, est en réalité d'abord parfaitement accessible, et certes exigeant mais passionnant. Je réalise grâce à lui à quel point la « part de rêve » que je réservais aux hommes et femmes de chevaux tels que lui, écuyers et écuyères, n'est absolument pas inaccessible mais au contraire un patrimoine bénéfique à quiconque, même débutant, a fortiori non équitant, dès l'abord du cheval dans son pré. Sachez que c'est là que son enseignement commence, face à son cheval, son attitude, son ipséité, sa locomotion adroite ou maladroite, peu importe sa race, son prix, son passé, et le destin que vous vous promettez ensemble. Florian réouvre le champ du possible et incline l'univers équin, devenu souvent impitoyable, avec douceur. Il offre des repères salvateurs, permettant d'asseoir une pratique contenante et progressive. Je le remercie de m'avoir permis de voir en un cheval issu de sauvetage, rachitique et jugé rétif, un être dont la sensibilité est exceptionnelle et la rencontre un événement précieux de mon existence.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Anne-Sophie</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière, élève en arts équestres — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">J'ai rencontré Florian dans un contexte inattendu, on pourrait dire un « heureux hasard ». Étant débutant à cheval, très débutant ! Florian m'a fait découvrir un autre monde équin. Non seulement le sien, mais aussi celui de ceux qui font son héritage. Il m'a ouvert la porte de sa demeure, où s'assoient à sa table le cavalier, le poète, et l'historien. Cet attelage est le plus captivant qu'il m'ait été donné de rencontrer dans ce milieu, où d'ordinaire tout horizon se limite à la compétition du dimanche. Ainsi, avec autant de générosité que de patience, Florian m'a initié à cette relation au cheval qui nous le fait voir et sentir si différemment. À pied tout d'abord, à pied encore. Et pour la première fois je ne sentais plus un être si difficile à monter, mais un être se promener en liberté à mes côtés, à pied, au trot. Bref, entrer dans cette relation de demande patiente, au gré de ses envies, de ses moyens. Florian m'a permis de rencontrer un cheval. Rien ou si peu pour certains, ce fut pour moi fondateur. Et de loin le plus important. Ainsi Florian vous invite non pas uniquement à un enseignement, un apprentissage, des techniques, (ce qu'il maîtrise parfaitement en professionnel aguerri), mais dans un univers qui relève de l'esprit du cavalier et du cheval, qui incarne un être au monde, une rencontre du poète et de l'oiseau, parfois dans le battement d'aile d'un papillon. Le cheval n'est plus alors le moyen d'une ambition, mais une fin en soi.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Thomas</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalier débutant — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">J'ai découvert la voltige cosaque auprès de Florian. Si cette discipline m'intriguait au départ, j'y suis très vite devenue accro ! Florian nous a d'abord fait découvrir l'histoire des cosaques et des différentes figures, puis il nous a formés au vocabulaire. En seulement cinq cours, j'ai progressé à une vitesse incroyable ! Florian est une personne douce mais dynamique, motivante, digne de confiance et surtout très à l'écoute de ses élèves. Quel que soit le niveau ou les besoins de chacun, il s'adapte avec une facilité déconcertante. Merci, Florian, de nous avoir fait découvrir — et aimer — cette magnifique discipline à travers tes yeux de passionné.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Darina</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière, élève en voltige cosaque — Suisse</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Le hasard et la chance m'ont fait rencontrer Florian, une sorte d'OVNI dans le monde équestre actuel, ardent défenseur des temps où monter à cheval était un Art. Florian m'enseigne les bases indispensables pour développer une relation harmonieuse avec le cheval, sans contrainte ni force, en selle ou à pied. Avec passion, enthousiasme et une infinie patience. Merci Florian, Calme, avant, droit !</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Florence</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière, élève en dressage — Suisse</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">River et moi prenons des cours de travail à pied et en liberté avec Florian. J'apprécie particulièrement sa pédagogie : il prend le temps de comprendre chaque situation et d'expliquer clairement ses propositions, sans chercher à appliquer une méthode toute faite. Son approche est sérieuse et réfléchie, avec une réelle attention portée à la sécurité, autant pour le cavalier que pour le cheval. Toujours positif, Florian sait aussi dire les choses avec justesse. Les cours sont toujours constructifs, dans le respect du rythme de chacun.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Maria</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière, élève en travail à pied et en liberté — Suisse</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Depuis que je prends des cours avec Florian, ma vision du cheval a totalement changé. C'est une personne profondément à l'écoute, qui nous guide avec bienveillance pour réellement comprendre notre cheval, ses réactions, ses émotions. Grâce à lui, j'ai appris bien plus qu'une simple technique : il m'a aidée à me faire confiance, à m'affirmer, tout en respectant profondément le bien-être équin. Avec Florian, on vit une vraie aventure de vie. Il ne juge jamais, il aide chacun à avancer à son rythme et à résoudre ses difficultés en profondeur. Je lui suis infiniment reconnaissante pour tout ce qu'il m'apporte.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Anaïs</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">J'ai eu la chance de découvrir la Voltige Cosaque avec Florian. Avant de démarrer, il nous a expliqué son histoire et pourquoi ces figures. C'est quelqu'un qui connaît parfaitement son sujet et le transmet avec passion. Je suis cavalière de complet donc complètement novice dans l'art de Florian. Cependant, avec tellement de simplicité et de bienveillance, il nous a donné envie de découvrir son monde. Travailler avec Florian est source d'enrichissements et il transmet son savoir avec passion et bienveillance.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Elisa</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière de concours complet — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Je vous recommande les cours avec Florian. Il est incroyable avec une approche respectueuse du cheval, il voit ses émotions et celles du cavalier. Les progrès sont là tout en douceur, dans la confiance ! Merci Florian, tu es une belle âme avec une parfaite connexion avec les chevaux.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Béatrice</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière — Suisse</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">Florian est très professionnel et passionné dans le domaine équestre. C'est toujours avec une grande motivation, des explications claires et dans la bonne humeur que nous faisons du travail à pied.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Clément</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalier, élève en travail à pied — France</span>
+                    </div>
+                </div>
+
+                <div class="temoignage">
+                    <div class="temoignage-corps">
+                        <p class="temoignage-texte">D'une très grande générosité, Florian n'hésite pas à prendre du temps afin de nous faire partager ses connaissances et compétences dans le milieu du spectacle équestre.</p>
+                    </div>
+                    <div class="temoignage-signature">
+                        <span class="temoignage-auteur">Lou</span>
+                        <span class="temoignage-tiret"></span>
+                        <span class="temoignage-origine">Cavalière — France</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="temoignages-controls">
+                <div class="temoignages-nav">
+                    <button class="temoignages-dot active" data-slide="0"></button>
+                    <button class="temoignages-dot" data-slide="1"></button>
+                    <button class="temoignages-dot" data-slide="2"></button>
+                    <button class="temoignages-dot" data-slide="3"></button>
+                    <button class="temoignages-dot" data-slide="4"></button>
+                    <button class="temoignages-dot" data-slide="5"></button>
+                    <button class="temoignages-dot" data-slide="6"></button>
+                    <button class="temoignages-dot" data-slide="7"></button>
+                    <button class="temoignages-dot" data-slide="8"></button>
+                    <button class="temoignages-dot" data-slide="9"></button>
+                    <button class="temoignages-dot" data-slide="10"></button>
+                </div>
+                <span class="temoignages-compteur"><strong>01</strong> / 11</span>
             </div>
 
         </div>
@@ -1304,21 +1627,22 @@
             <div>
                 <div class="footer-col-titre">Enseignements</div>
                 <ul class="footer-liens">
-                    <li><a href="/enseignements/">Cours &amp; stages</a></li>
-                    <li><a href="/enseignements/academie/">Académie de Pluvinel</a></li>
-                    <li><a href="/enseignements/academie/salomon-de-la-broue/">Académie Salomon</a></li>
-                    <li><a href="/enseignements/examens-ffe/">Examens FFE</a></li>
+                    <li><a href="/enseignements/cours-equitation/">Cours d'équitation</a></li>
+                    <li><a href="/enseignements/stages-equitation/">Stages</a></li>
+                    <li><a href="/enseignements/academie-equestre/">Académie équestre</a></li>
+                    <li><a href="/disciplines-equestres/">Disciplines équestres</a></li>
+                    <li><a href="/enseignements/examens-federaux.html">Examens fédéraux</a></li>
                 </ul>
             </div>
 
             <div>
-                <div class="footer-col-titre">Disciplines</div>
+                <div class="footer-col-titre">Soins &amp; Accompagnements</div>
                 <ul class="footer-liens">
-                    <li><a href="/disciplines-equestres/">Haute-École</a></li>
-                    <li><a href="/disciplines-equestres/">Voltige cosaque</a></li>
-                    <li><a href="/disciplines-equestres/">Fauconnerie</a></li>
-                    <li><a href="/disciplines-equestres/">Attelage</a></li>
-                    <li><a href="/disciplines-equestres/">Reconstitution historique</a></li>
+                    <li><a href="/accompagnements/">Accompagnements</a></li>
+                    <li><a href="/soins-cheval/">Soins du cheval</a></li>
+                    <li><a href="/soins-cavalier/">Soins du cavalier</a></li>
+                    <li><a href="/soins-cheval-cavalier/">Soins du couple</a></li>
+                    <li><a href="/therapie-cheval/">Soins par le cheval</a></li>
                 </ul>
             </div>
 
@@ -1328,6 +1652,8 @@
                     <li><a href="tel:0603880354">06 03 88 03 54</a></li>
                     <li><a href="mailto:florianpoupin.equestre@gmail.com">florianpoupin.equestre@gmail.com</a></li>
                     <li><a href="/contact/">Formulaire de contact</a></li>
+                    <li><a href="/tarifs-infos-pratiques/">Tarifs &amp; infos pratiques</a></li>
+                    <li><a href="/mentions-legales/">Mentions légales</a></li>
                 </ul>
             </div>
         </div>
@@ -1367,6 +1693,34 @@
                 }
             });
         }
+
+        // Carrousel témoignages
+        const slides = document.querySelectorAll('.temoignage');
+        const dots = document.querySelectorAll('.temoignages-dot');
+        const compteur = document.querySelector('.temoignages-compteur');
+        let currentSlide = 0;
+        let autoPlay;
+
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            currentSlide = ((n % slides.length) + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            if (compteur) {
+                compteur.innerHTML = '<strong>' + String(currentSlide + 1).padStart(2, '0') + '</strong> / ' + slides.length;
+            }
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.dataset.slide));
+                clearInterval(autoPlay);
+                autoPlay = setInterval(() => showSlide(currentSlide + 1), 8000);
+            });
+        });
+
+        autoPlay = setInterval(() => showSlide(currentSlide + 1), 8000);
     </script>
 
 </body>

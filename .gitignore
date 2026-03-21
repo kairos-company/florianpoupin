@@ -1,0 +1,6 @@
+# Images sources client (trop volumineuses pour git)
+/images/
+
+# OS
+.DS_Store
+Thumbs.db

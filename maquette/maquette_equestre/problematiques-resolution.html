@@ -74,39 +74,166 @@
         .intro-inner { max-width: 780px; margin: 0 auto; }
         .intro-texte { margin-top: 2rem; font-size: 1.1rem; line-height: 1.85; color: #3a2520; }
 
-        /* ACCOMPAGNEMENTS GRILLE */
-        .accompagnements { padding: 6rem 3rem; background: var(--blanc); }
-        .accompagnements-inner { max-width: 1100px; margin: 0 auto; }
-        .accompagnements-grille { margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 4rem; }
+        /* ===== ACCOMPAGNEMENTS — LISTE VERTICALE ÉLÉGANTE ===== */
+        .accompagnements {
+            background: var(--bordeaux-fonce);
+            padding: 7rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-        .accomp-card { padding: 2.2rem 2rem; border: 1px solid rgba(201, 168, 76, 0.25); position: relative; transition: border-color 0.3s, transform 0.3s; }
-        .accomp-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--or); opacity: 0; transition: opacity 0.3s; }
-        .accomp-card:hover { border-color: var(--or); transform: translateY(-2px); }
-        .accomp-card:hover::before { opacity: 1; }
-        .accomp-card-num { font-family: 'Cormorant Garamond', serif; font-size: 0.68rem; letter-spacing: 0.32em; color: var(--or); margin-bottom: 0.5rem; }
-        .accomp-card-titre { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; color: var(--bordeaux); line-height: 1.3; margin-bottom: 1rem; }
-        .accomp-card-texte { font-size: 1rem; line-height: 1.75; color: #3a2520; }
-        .accomp-card-detail { font-size: 0.92rem; color: var(--gris-chaud); font-style: italic; margin-top: 0.5rem; line-height: 1.6; }
+        .accompagnements::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(201, 168, 76, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(61, 0, 21, 0.4) 0%, transparent 50%);
+        }
 
-        /* DISCIPLINE SECTION (pour image + texte) */
-        .discipline { padding: 6rem 3rem; }
-        .discipline--sombre { background: var(--bordeaux-fonce); }
-        .discipline-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .discipline-visuel { position: relative; }
-        .discipline-visuel img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-        .discipline-visuel::after { content: ''; position: absolute; top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem; border: 1px solid var(--or); opacity: 0.25; z-index: -1; }
-        .discipline-contenu .section-eyebrow { text-align: left; }
-        .discipline-contenu .section-title { text-align: left; }
-        .discipline-contenu .section-filet { justify-content: flex-start; }
-        .discipline--sombre .section-eyebrow { color: var(--or); }
-        .discipline--sombre .section-title { color: var(--blanc); }
-        .discipline-texte { margin-top: 2rem; font-size: 1.05rem; line-height: 1.85; }
-        .discipline--sombre .discipline-texte { color: rgba(248, 245, 239, 0.75); }
-        .discipline-texte p + p { margin-top: 1.2em; }
-        .discipline-liste { margin-top: 1.5rem; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-        .discipline-liste li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.6; }
-        .discipline--sombre .discipline-liste li { color: rgba(248, 245, 239, 0.72); }
-        .discipline-liste li::before { content: ''; width: 5px; height: 5px; background: var(--or); transform: rotate(45deg); flex-shrink: 0; margin-top: 0.5em; }
+        .accompagnements-inner {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accompagnements-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .accompagnements-header .section-eyebrow { color: var(--or); }
+        .accompagnements-header .section-title { color: var(--blanc); }
+
+        .accomp-item {
+            display: grid;
+            grid-template-columns: 4.5rem 1fr;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+            align-items: start;
+        }
+
+        .accomp-item:first-child {
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .accomp-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--or);
+            line-height: 1;
+            opacity: 0.5;
+            text-align: right;
+            padding-top: 0.15rem;
+        }
+
+        .accomp-contenu {}
+
+        .accomp-titre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--blanc);
+            letter-spacing: 0.03em;
+            line-height: 1.3;
+        }
+
+        .accomp-desc {
+            margin-top: 0.8rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: rgba(248, 245, 239, 0.65);
+        }
+
+        .accomp-detail {
+            margin-top: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-style: italic;
+            letter-spacing: 0.06em;
+            color: var(--or);
+            opacity: 0.6;
+        }
+
+        /* ===== IMAGE BREAK ===== */
+        .image-break {
+            position: relative;
+            width: 100%;
+            height: 45vh;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .image-break img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 45%;
+        }
+
+        .image-break-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 0, 8, 0.15) 0%,
+                rgba(26, 0, 8, 0.08) 50%,
+                rgba(26, 0, 8, 0.15) 100%
+            );
+        }
+
+        /* ===== STAGES SECTION ===== */
+        .stages {
+            padding: 6rem 3rem;
+            background: var(--blanc);
+        }
+
+        .stages-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stages-texte {
+            margin-top: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #3a2520;
+        }
+
+        .stages-liste {
+            margin-top: 2rem;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stages-liste li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #3a2520;
+        }
+
+        .stages-liste li::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--or);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            margin-top: 0.5em;
+        }
 
         /* CITATION */
         .citation { background: var(--bordeaux-fonce); padding: 5.5rem 3rem; text-align: center; position: relative; overflow: hidden; }
@@ -145,9 +272,11 @@
         /* ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(1.8rem); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-d1 { transition-delay: 0.1s; }
-        .reveal-d2 { transition-delay: 0.2s; }
-        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d1 { transition-delay: 0.12s; }
+        .reveal-d2 { transition-delay: 0.24s; }
+        .reveal-d3 { transition-delay: 0.36s; }
+        .reveal-d4 { transition-delay: 0.48s; }
+        .reveal-d5 { transition-delay: 0.6s; }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
@@ -155,10 +284,11 @@
             .header-nav { display: none; }
             .hero-page { height: 50vh; min-height: 350px; }
             .hero-page-content { padding: 3rem 2rem; }
-            .accompagnements-grille { grid-template-columns: 1fr; }
-            .discipline { padding: 4rem 1.5rem; }
-            .discipline-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .discipline-visuel::after { display: none; }
+            .accompagnements { padding: 5rem 1.5rem; }
+            .accomp-item { grid-template-columns: 2.5rem 1fr; gap: 1rem; padding: 1.8rem 0; }
+            .accomp-num { font-size: 2rem; }
+            .accomp-titre { font-size: 1.25rem; }
+            .stages { padding: 4rem 1.5rem; }
             .cta-final-buttons { flex-direction: column; align-items: center; }
             .footer-grille { grid-template-columns: 1fr; }
         }
@@ -223,7 +353,7 @@
 
     <!-- HERO -->
     <section class="hero-page">
-        <img src="images/cours-florian-guide.jpg" alt="Florian Poupin accompagnant une cavalière en carrière" class="hero-page-img">
+        <img src="images/hero-problematiques.png" alt="Frison refusant de monter dans un van de concours" class="hero-page-img">
         <div class="hero-page-overlay"></div>
         <div class="hero-page-content">
             <div class="hero-page-line"></div>
@@ -249,73 +379,92 @@
     <!-- ACCOMPAGNEMENTS -->
     <section class="accompagnements">
         <div class="accompagnements-inner">
-            <div class="accompagnements-grille">
 
-                <div class="accomp-card reveal">
-                    <span class="accomp-card-num">01</span>
-                    <h3 class="accomp-card-titre">Monte en van ou camion</h3>
-                    <p class="accomp-card-texte">Votre cheval refuse de monter dans le van ou le camion ? Florian travaille en douceur sur la confiance, la compréhension et la désensibilisation pour que le transport ne soit plus une source de stress ni pour le cheval, ni pour le cavalier.</p>
+            <div class="accompagnements-header reveal">
+                <span class="section-eyebrow">Six accompagnements</span>
+                <h2 class="section-title">Écouter, comprendre, <em>résoudre</em></h2>
+                <div class="section-filet">
+                    <div class="filet-ligne" style="background: rgba(248,245,239,0.25);"></div>
+                    <div class="filet-diamant"></div>
+                    <div class="filet-ligne" style="background: rgba(248,245,239,0.25);"></div>
                 </div>
-
-                <div class="accomp-card reveal reveal-d1">
-                    <span class="accomp-card-num">02</span>
-                    <h3 class="accomp-card-titre">Désensibilisation</h3>
-                    <p class="accomp-card-texte">Travailler sur les peurs et les réactions excessives du cheval, au travail comme en extérieur. Un cheval désensibilisé est un cheval plus serein, plus sûr pour lui-même et pour son cavalier.</p>
-                    <p class="accomp-card-detail">Au travail et en extérieur</p>
-                </div>
-
-                <div class="accomp-card reveal">
-                    <span class="accomp-card-num">03</span>
-                    <h3 class="accomp-card-titre">Éducation au respect</h3>
-                    <p class="accomp-card-texte">Poser les codes fondamentaux de la relation homme-cheval. Le respect mutuel est la base de toute interaction saine et sécurisée. Sans respect, il n'y a ni confiance, ni progression possible.</p>
-                </div>
-
-                <div class="accomp-card reveal reveal-d1">
-                    <span class="accomp-card-num">04</span>
-                    <h3 class="accomp-card-titre">Approche biomécanique cheval-cavalier</h3>
-                    <p class="accomp-card-texte">Recherche des dysfonctionnements biomécaniques chez le cheval et le cavalier, les comprendre et réduire leur impact dans l'équitation. Un travail en profondeur sur la locomotion et l'harmonie du couple.</p>
-                </div>
-
-                <div class="accomp-card reveal">
-                    <span class="accomp-card-num">05</span>
-                    <h3 class="accomp-card-titre">Posture, position et respiration</h3>
-                    <p class="accomp-card-texte">Recherche de la bonne attitude, comprendre et gérer son corps pour trouver une justesse face au cheval. Comprendre les besoins du cheval afin de l'aider dans le travail.</p>
-                    <p class="accomp-card-detail">Les effets sur le cheval et l'humain</p>
-                </div>
-
-                <div class="accomp-card reveal reveal-d1">
-                    <span class="accomp-card-num">06</span>
-                    <h3 class="accomp-card-titre">Programme de progression</h3>
-                    <p class="accomp-card-texte">Axe de travail personnalisé pour le cheval et le cavalier selon le niveau et l'objectif fixé par discipline. Un accompagnement structuré dans la durée pour une progression cohérente.</p>
-                </div>
-
             </div>
+
+            <div class="accomp-item reveal">
+                <span class="accomp-num">I</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Monte en van ou camion</h3>
+                    <p class="accomp-desc">Votre cheval refuse de monter dans le van ou le camion ? Florian travaille en douceur sur la confiance, la compréhension et la désensibilisation pour que le transport ne soit plus une source de stress ni pour le cheval, ni pour le cavalier.</p>
+                </div>
+            </div>
+
+            <div class="accomp-item reveal reveal-d1">
+                <span class="accomp-num">II</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Désensibilisation</h3>
+                    <p class="accomp-desc">Travailler sur les peurs et les réactions excessives du cheval, au travail comme en extérieur. Un cheval désensibilisé est un cheval plus serein, plus sûr pour lui-même et pour son cavalier.</p>
+                    <p class="accomp-detail">Au travail et en extérieur</p>
+                </div>
+            </div>
+
+            <div class="accomp-item reveal reveal-d2">
+                <span class="accomp-num">III</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Éducation au respect</h3>
+                    <p class="accomp-desc">Poser les codes fondamentaux de la relation homme-cheval. Le respect mutuel est la base de toute interaction saine et sécurisée. Sans respect, il n'y a ni confiance, ni progression possible.</p>
+                </div>
+            </div>
+
+            <div class="accomp-item reveal reveal-d3">
+                <span class="accomp-num">IV</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Approche biomécanique cheval-cavalier</h3>
+                    <p class="accomp-desc">Recherche des dysfonctionnements biomécaniques chez le cheval et le cavalier, les comprendre et réduire leur impact dans l'équitation. Un travail en profondeur sur la locomotion et l'harmonie du couple.</p>
+                </div>
+            </div>
+
+            <div class="accomp-item reveal reveal-d4">
+                <span class="accomp-num">V</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Posture, position et respiration</h3>
+                    <p class="accomp-desc">Recherche de la bonne attitude, comprendre et gérer son corps pour trouver une justesse face au cheval. Comprendre les besoins du cheval afin de l'aider dans le travail.</p>
+                    <p class="accomp-detail">Les effets sur le cheval et l'humain</p>
+                </div>
+            </div>
+
+            <div class="accomp-item reveal reveal-d5">
+                <span class="accomp-num">VI</span>
+                <div class="accomp-contenu">
+                    <h3 class="accomp-titre">Programme de progression</h3>
+                    <p class="accomp-desc">Axe de travail personnalisé pour le cheval et le cavalier selon le niveau et l'objectif fixé par discipline. Un accompagnement structuré dans la durée pour une progression cohérente.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
+    <!-- IMAGE BREAK -->
+    <div class="image-break">
+        <img src="images/biomecanique-cheval.png" alt="Cheval au trot avec lignes biomécaniques peintes sur le corps, en manège" loading="lazy">
+        <div class="image-break-overlay"></div>
+    </div>
+
     <!-- STAGES -->
-    <section class="discipline discipline--sombre">
-        <div class="discipline-inner">
-            <div class="discipline-visuel reveal">
-                <img src="images/cours-travail-pied.jpg" alt="Florian Poupin, accompagnement en carrière" loading="lazy">
+    <section class="stages">
+        <div class="stages-inner">
+            <span class="section-eyebrow reveal">À la carte</span>
+            <h2 class="section-title reveal">Stages <em>enseignements et accompagnements</em></h2>
+            <div class="section-filet reveal">
+                <div class="filet-ligne"></div>
+                <div class="filet-diamant"></div>
+                <div class="filet-ligne"></div>
             </div>
-            <div class="discipline-contenu">
-                <span class="section-eyebrow reveal">À la carte</span>
-                <h2 class="section-title reveal">Stages <em>enseignements et accompagnements</em></h2>
-                <div class="section-filet reveal" style="justify-content: flex-start;">
-                    <div class="filet-ligne"></div>
-                    <div class="filet-diamant"></div>
-                    <div class="filet-ligne"></div>
-                </div>
-                <div class="discipline-texte reveal">
-                    <p>Les stages permettent de combiner enseignements et accompagnements sur un ou plusieurs jours, pour un travail en immersion adapté à vos besoins spécifiques.</p>
-                </div>
-                <ul class="discipline-liste reveal">
-                    <li>Déplacements possibles dans toute la France, Suisse et Belgique</li>
-                    <li>Sur un ou plusieurs jours selon la demande et les besoins</li>
-                    <li>Le temps des séances n'est pas fixé -- il varie en fonction des exercices, des besoins de travail et des aptitudes</li>
-                </ul>
-            </div>
+            <p class="stages-texte reveal">Les stages permettent de combiner enseignements et accompagnements sur un ou plusieurs jours, pour un travail en immersion adapté à vos besoins spécifiques.</p>
+            <ul class="stages-liste reveal">
+                <li>Déplacements possibles dans toute la France, Suisse et Belgique</li>
+                <li>Sur un ou plusieurs jours selon la demande et les besoins</li>
+                <li>Le temps des séances n'est pas fixé -- il varie en fonction des exercices, des besoins de travail et des aptitudes</li>
+            </ul>
         </div>
     </section>
 

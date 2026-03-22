@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos — Florian Poupin — Arts Équestres à la Française</title>
+    <meta name="description" content="Artiste pluridisciplinaire, cavalier, fauconnier et enseignant équestre diplômé. Découvrez le parcours de Florian Poupin, son approche et ses disciplines.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bordeaux:       #3d0015;
+            --bordeaux-fonce: #1a0008;
+            --bordeaux-mid:   #5a0020;
+            --or:             #c9a84c;
+            --or-clair:       #e8c96a;
+            --or-fonce:       #9a7a30;
+            --blanc:          #f8f5ef;
+            --gris-chaud:     #8a7a6a;
+            --texte:          #2a1510;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--blanc);
+            color: var(--texte);
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+            background: var(--bordeaux-fonce);
+            transition: background 0.4s ease, backdrop-filter 0.4s;
+        }
+
+        .header.scrolled {
+            background: rgba(26, 0, 8, 0.97);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+
+        .header-logo img {
+            height: 5rem;
+            width: auto;
+            display: block;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .header-nav > li { position: relative; }
+
+        .header-nav a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blanc);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .header-nav a:hover { opacity: 1; color: var(--or); }
+        .header-nav a.active { opacity: 1; color: var(--or); }
+
+        /* Flèche dropdown */
+        .header-nav .has-dropdown > a::after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-right: 1px solid currentColor;
+            border-bottom: 1px solid currentColor;
+            transform: rotate(45deg) translateY(-2px);
+            margin-left: 6px;
+            opacity: 0.7;
+            vertical-align: middle;
+        }
+
+        /* Dropdown panel */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 1.2rem);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e0410;
+            border: 1px solid rgba(201,168,76,0.35);
+            min-width: 220px;
+            padding: 0.6rem 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transform: translateX(-50%) translateY(6px);
+        }
+
+        .header-nav .has-dropdown:hover .nav-dropdown,
+        .header-nav .has-dropdown:focus-within .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -1.2rem;
+            left: 0;
+            right: 0;
+            height: 1.2rem;
+        }
+
+        .nav-dropdown li a {
+            display: block;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            opacity: 0.75;
+            border-left: 2px solid transparent;
+            transition: opacity 0.15s, border-color 0.15s, padding-left 0.15s;
+        }
+
+        .nav-dropdown li a:hover {
+            opacity: 1;
+            color: var(--or);
+            border-left-color: var(--or);
+            padding-left: 1.8rem;
+        }
+
+        .header-cta {
+            color: var(--bordeaux) !important;
+            background: var(--or);
+            padding: 0.55rem 1.4rem !important;
+            opacity: 1 !important;
+            transition: background 0.2s !important;
+        }
+
+        .header-cta:hover {
+            background: var(--or-clair) !important;
+            color: var(--bordeaux) !important;
+        }
+
+        /* ===== BOUTONS ===== */
+        .btn-or {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--bordeaux);
+            background: var(--or);
+            padding: 1rem 2.6rem;
+            text-decoration: none;
+            border: 2px solid var(--or);
+            display: inline-block;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .btn-or:hover { background: transparent; color: var(--or); }
+
+        .btn-bordeaux {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blanc);
+            background: var(--bordeaux);
+            padding: 1rem 2.6rem;
+            text-decoration: none;
+            border: 2px solid var(--bordeaux);
+            display: inline-block;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .btn-bordeaux:hover { background: transparent; color: var(--bordeaux); }
+
+        .btn-or-outline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--or);
+            background: transparent;
+            padding: 1rem 2.6rem;
+            text-decoration: none;
+            border: 1px solid var(--or);
+            display: inline-block;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .btn-or-outline:hover { background: var(--or); color: var(--bordeaux-fonce); }
+
+        /* ===== SECTION COMMONS ===== */
+        .section-eyebrow {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--or-fonce);
+            margin-bottom: 0.85rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 300;
+            color: var(--bordeaux);
+            line-height: 1.15;
+        }
+
+        .section-title em { font-style: italic; color: var(--or-fonce); }
+
+        .section-filet {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .filet-ligne { width: 3rem; height: 1px; background: var(--or); }
+        .filet-diamant { width: 6px; height: 6px; background: var(--or); transform: rotate(45deg); }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            margin-top: 5rem;
+            padding: 0.9rem 3rem;
+            background: var(--bordeaux-fonce);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .breadcrumb ol {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb li {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb li + li::before {
+            content: '/';
+            margin: 0 0.6rem;
+            color: rgba(248, 245, 239, 0.25);
+        }
+
+        .breadcrumb a {
+            color: rgba(248, 245, 239, 0.45);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover { color: var(--or); }
+
+        .breadcrumb .breadcrumb-current {
+            color: var(--or);
+            opacity: 0.7;
+        }
+
+        /* ===== HERO A PROPOS ===== */
+        .hero-apropos {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-apropos-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 52%;
+        }
+
+        .hero-apropos-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(26, 0, 8, 0.92) 0%,
+                rgba(26, 0, 8, 0.4) 40%,
+                rgba(26, 0, 8, 0.2) 100%
+            );
+        }
+
+        .hero-apropos-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 5rem 4rem;
+            max-width: 900px;
+        }
+
+        .hero-apropos-line {
+            width: 4rem;
+            height: 1px;
+            background: var(--or);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero-apropos-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 300;
+            letter-spacing: 0.06em;
+            color: var(--blanc);
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero-apropos-title em {
+            font-style: italic;
+            color: var(--or);
+        }
+
+        .hero-apropos-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--or);
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.7s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(1.5rem); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== BIOGRAPHIE ===== */
+        .biographie {
+            padding: 7rem 3rem;
+            background: var(--blanc);
+        }
+
+        .biographie-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .biographie-portrait {
+            position: relative;
+        }
+
+        .biographie-portrait img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
+
+        .biographie-portrait::after {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            right: -1.5rem;
+            bottom: -1.5rem;
+            border: 1px solid var(--or);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .biographie-contenu {
+            padding-top: 1rem;
+        }
+
+        .biographie-contenu .section-eyebrow { text-align: left; }
+        .biographie-contenu .section-title   { text-align: left; }
+        .biographie-contenu .section-filet   { justify-content: flex-start; }
+
+        .biographie-texte {
+            margin-top: 2.5rem;
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #3a2520;
+        }
+
+        .biographie-texte p + p { margin-top: 1.2em; }
+
+        .biographie-texte .accent {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--bordeaux);
+            font-weight: 500;
+        }
+
+        /* ===== BIOGRAPHIE SUITE (2 colonnes) ===== */
+        .bio-suite {
+            padding: 0 3rem 6rem;
+            background: var(--blanc);
+            position: relative;
+        }
+
+        .bio-suite-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .bio-suite-filet {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio-suite-filet::before,
+        .bio-suite-filet::after {
+            content: '';
+            width: 6rem;
+            height: 1px;
+        }
+
+        .bio-suite-filet::before { background: linear-gradient(to right, transparent, var(--or)); }
+        .bio-suite-filet::after  { background: linear-gradient(to left, transparent, var(--or)); }
+
+        .bio-suite-ornement { color: var(--or); font-size: 1rem; }
+
+        .bio-suite-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .bio-suite-col {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #3a2520;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .bio-suite-col::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.3rem;
+            bottom: 0.3rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--or), transparent);
+        }
+
+        .bio-suite-col:first-child::before { display: none; }
+
+        .bio-suite-col:first-child { padding-left: 0; }
+
+        .bio-suite-col p + p { margin-top: 1.2em; }
+
+        .bio-suite-accent {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--bordeaux);
+            font-weight: 500;
+        }
+
+        .bio-suite-col .lettrine {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 300;
+            float: left;
+            line-height: 0.85;
+            margin-right: 0.4rem;
+            margin-top: 0.15rem;
+            color: var(--bordeaux);
+        }
+
+        /* ===== APPROCHE (citation longue) ===== */
+        .approche {
+            background: var(--bordeaux-fonce);
+            padding: 7rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approche::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(201, 168, 76, 0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 50%, rgba(61, 0, 21, 0.6) 0%, transparent 55%);
+        }
+
+        .approche-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .approche-texte-wrapper {
+            max-width: 560px;
+        }
+
+        .approche .section-eyebrow { color: var(--or); }
+        .approche .section-title   { color: var(--blanc); }
+
+        .approche-citation {
+            margin-top: 2.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 2vw, 1.55rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.75;
+            color: rgba(248, 245, 239, 0.88);
+        }
+
+        .approche-citation p + p { margin-top: 1.3em; }
+
+        .approche-detail {
+            margin-top: 2.5rem;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: rgba(248, 245, 239, 0.68);
+        }
+
+        .approche-detail p + p { margin-top: 1.2em; }
+
+        .approche-visuel {
+            position: relative;
+        }
+
+        .approche-visuel img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+        }
+
+        .approche-visuel::before {
+            content: '';
+            position: absolute;
+            top: -1.5rem;
+            right: -1.5rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            z-index: -1;
+        }
+
+        /* ===== APPROCHE SUITE (2 colonnes, fond bordeaux) ===== */
+        .approche-suite {
+            background: var(--bordeaux);
+            padding: 4.5rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approche-suite::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(90, 0, 32, 0.4) 0%, transparent 50%);
+        }
+
+        .approche-suite-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .approche-suite-filet {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .approche-suite-filet::before,
+        .approche-suite-filet::after {
+            content: '';
+            width: 6rem;
+            height: 1px;
+        }
+
+        .approche-suite-filet::before { background: linear-gradient(to right, transparent, var(--or-fonce)); }
+        .approche-suite-filet::after  { background: linear-gradient(to left, transparent, var(--or-fonce)); }
+
+        .approche-suite-ornement { color: var(--or); font-size: 1rem; }
+
+        .approche-suite-eyebrow {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--or);
+            margin-top: 1rem;
+        }
+
+        .approche-suite-inner {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .approche-suite-col {
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: rgba(248, 245, 239, 0.68);
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .approche-suite-col::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.3rem;
+            bottom: 0.3rem;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(201, 168, 76, 0.4), transparent);
+        }
+
+        .approche-suite-col:first-child::before { display: none; }
+        .approche-suite-col:first-child { padding-left: 0; }
+
+        .approche-suite-col p + p { margin-top: 1.2em; }
+
+        .approche-suite-col .lettrine {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 300;
+            float: left;
+            line-height: 0.85;
+            margin-right: 0.4rem;
+            margin-top: 0.15rem;
+            color: var(--or);
+            opacity: 0.6;
+        }
+
+        /* ===== DISCIPLINES ===== */
+        .disciplines {
+            padding: 7rem 3rem;
+            background: var(--blanc);
+        }
+
+        .disciplines .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .disciplines-sous-titre {
+            text-align: center;
+            margin-top: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gris-chaud);
+        }
+
+        .disciplines-grille {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem 5rem;
+        }
+
+        .disc-categorie {
+            padding-bottom: 2rem;
+        }
+
+        .disc-categorie-titre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--bordeaux);
+            letter-spacing: 0.04em;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .disc-liste {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .disc-liste li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #3a2520;
+            flex-wrap: wrap;
+        }
+
+        .disc-liste li::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--or);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            margin-top: 0.5em;
+        }
+
+        .disc-liste .sous-detail {
+            width: 100%;
+            font-size: 0.92rem;
+            color: var(--gris-chaud);
+            font-style: italic;
+            padding-left: 1.3rem;
+            margin-top: -0.2rem;
+        }
+
+        /* ===== SECTION IMAGE PLEINE LARGEUR ===== */
+        .image-break {
+            position: relative;
+            width: 100%;
+            height: 45vh;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .image-break img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 55%;
+        }
+
+        .image-break-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 0, 8, 0.15) 0%,
+                rgba(26, 0, 8, 0.5) 100%
+            );
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            background: var(--bordeaux);
+            padding: 5.5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 50%, rgba(90, 0, 32, 0.5) 0%, transparent 50%);
+        }
+
+        .cta-final-inner {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-final .section-eyebrow { color: var(--or); }
+        .cta-final .section-title   { color: var(--blanc); }
+
+        .cta-final-texte {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: rgba(248, 245, 239, 0.72);
+        }
+
+        .cta-final-buttons {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bordeaux-fonce);
+            padding: 4.5rem 3rem 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.18);
+        }
+
+        .footer-grille {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(248, 245, 239, 0.07);
+        }
+
+        .footer-logo img { height: 5rem; width: auto; margin-bottom: 1rem; }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.88rem;
+            font-style: italic;
+            color: rgba(248, 245, 239, 0.42);
+            line-height: 1.7;
+            max-width: 260px;
+        }
+
+        .footer-col-titre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--or);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-liens {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer-liens a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: rgba(248, 245, 239, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-liens a:hover { color: var(--or); }
+
+        .footer-bas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(248, 245, 239, 0.28);
+            letter-spacing: 0.06em;
+        }
+
+        .footer-contact {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: rgba(248, 245, 239, 0.45);
+        }
+
+        .footer-contact a { color: var(--or); text-decoration: none; }
+
+        /* ===== ANIMATIONS SCROLL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(1.8rem);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .header { padding: 0 1.5rem; }
+            .header-nav { display: none; }
+
+            .hero-apropos { height: 50vh; min-height: 380px; }
+            .hero-apropos-content { padding: 3rem 2rem; }
+
+            .biographie-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .biographie-portrait::after { display: none; }
+
+            .bio-suite-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .approche-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .approche-visuel { order: -1; }
+            .approche-visuel::before { display: none; }
+
+            .approche-suite-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .disciplines-grille {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-final-buttons { flex-direction: column; align-items: center; }
+
+            .footer-grille { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <a href="index.html" class="header-logo">
+            <img src="images/logo.avif" alt="IRINEO — Florian Poupin">
+        </a>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="a-propos.html" class="active">À propos</a></li>
+
+                <li class="has-dropdown">
+                    <a href="/enseignements/">Enseignements</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="arts-equestres.html">Arts équestres</a></li>
+                        <li><a href="cours-stages.html">Cours &amp; Stages</a></li>
+                        <li><a href="academie.html">Académie équestre</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="/conseils-expertise/">Conseils &amp; Expertise</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/conseils-expertise/problematiques-resolution/">Problématique &amp; Résolution</a></li>
+                        <li><a href="/conseils-expertise/apprentissage-education/">Apprentissage &amp; Éducation</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="/soins-bien-etre/">Soins &amp; Bien-être</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/soins-bien-etre/cheval.html">Soins du cheval</a></li>
+                        <li><a href="/soins-bien-etre/cavalier.html">Soins du cavalier</a></li>
+                        <li><a href="/soins-bien-etre/cheval-cavalier.html">Soins du couple cheval-cavalier</a></li>
+                        <li><a href="/soins-bien-etre/soins-par-le-cheval.html">Soins par le cheval</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/contact/" class="header-cta">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="index.html" itemprop="item"><span itemprop="name">Accueil</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span class="breadcrumb-current" itemprop="name">À propos</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-apropos">
+        <img src="images/hero-apropos.jpg" alt="Florian Poupin en costume traditionnel à cheval, rapace en vol" class="hero-apropos-img">
+        <div class="hero-apropos-overlay"></div>
+        <div class="hero-apropos-content">
+            <div class="hero-apropos-line"></div>
+            <h1 class="hero-apropos-title">Florian <em>Poupin</em></h1>
+            <p class="hero-apropos-sub">Artiste pluridisciplinaire -- Cavalier -- Fauconnier</p>
+        </div>
+    </section>
+
+    <!-- ===== BIOGRAPHIE (image + texte court) ===== -->
+    <section class="biographie">
+        <div class="biographie-inner">
+            <div class="biographie-portrait reveal">
+                <img src="images/apropos-travail-pied.jpg" alt="Florian Poupin, travail à pied avec un cheval blanc">
+            </div>
+            <div class="biographie-contenu">
+                <span class="section-eyebrow reveal">Parcours</span>
+                <h2 class="section-title reveal">Un conte de <em>mille et une vies</em></h2>
+                <div class="section-filet reveal">
+                    <div class="filet-ligne"></div>
+                    <div class="filet-diamant"></div>
+                    <div class="filet-ligne"></div>
+                </div>
+                <div class="biographie-texte reveal">
+                    <p>Artiste pluridisciplinaire reconnu, Florian côtoie les plateaux de tournages, les scènes internationales et les studios d'enregistrements.</p>
+                    <p>Sa passion et son œil avisé appréciés de tous, l'amènent aussi à écrire et à mettre en scène des spectacles en Europe.</p>
+                    <p>Les connaissances de ses arts lui permettent de former tous ceux désireux d'apprendre. Qu'ils soient professionnels ou particuliers. <span class="accent">La transmission fait partie intégrante de ses convictions.</span></p>
+                    <p>Homme d'une grande sensibilité, il apporte à sa vie le sens du beau et des valeurs d'amour. C'est pourquoi, au-delà du monde artistique, Florian accompagne dans un processus de soins et de thérapies des personnes recherchant un mieux-être et une meilleure compréhension d'elles-mêmes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BIOGRAPHIE SUITE (2 colonnes, fond blanc) ===== -->
+    <section class="bio-suite">
+        <div class="bio-suite-header">
+            <div class="bio-suite-filet">
+                <span class="bio-suite-ornement">&#10022;</span>
+            </div>
+        </div>
+        <div class="bio-suite-inner reveal">
+            <div class="bio-suite-col">
+                <p><span class="lettrine">T</span>rès jeune, il apprend de l'amour des animaux et plus particulièrement des chevaux. Commençant l'équitation à l'âge de 6 ans, il en acquiert de grandes facilités et une recherche constante d'apprentissage. Notamment dans les disciplines de spectacles, mais aussi dans l'Équitation Historique et de Tradition à la Française.</p>
+                <p>Il lui est enseigné les arts équestres avec rigueur. Sa soif insatiable d'apprentissage l'amène à se perfectionner. Il est ainsi formé par des grands noms de l'équitation française, comme Monsieur Lucien Gruss ou encore, pour l'attelage, Monsieur Jean Fautras.</p>
+            </div>
+            <div class="bio-suite-col">
+                <p>C'est alors qu'il devient, en 2010, professionnel dans le monde équestre à côté de ses autres connaissances artistiques. Travaillant notamment pour des grands parcs européens, des scènes prestigieuses.</p>
+                <p class="bio-suite-accent">Enseignant d'équitation diplômé passionné, Florian n'a qu'un seul but : partager son savoir et inculquer l'amour de l'équitation dans son plus bel écrin.</p>
+                <p>Défenseur des savoirs séculaires et du bien-être équin, il s'efforce chaque jour à la recherche de l'excellence, de la beauté noble et de la transmission ; alliant tradition et modernité.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMAGE BREAK ===== -->
+    <div class="image-break">
+        <img src="images/break-chars.png" alt="Florian Poupin, course de chars romains">
+        <div class="image-break-overlay"></div>
+    </div>
+
+    <!-- ===== SON APPROCHE (citation + image) ===== -->
+    <section class="approche">
+        <div class="approche-inner">
+            <div class="approche-texte-wrapper">
+                <span class="section-eyebrow reveal">Son approche</span>
+                <h2 class="section-title reveal">Un dialogue de <em>Centaure</em></h2>
+                <div class="section-filet" style="justify-content: flex-start;">
+                    <div class="filet-ligne"></div>
+                    <div class="filet-diamant"></div>
+                    <div class="filet-ligne"></div>
+                </div>
+                <div class="approche-citation reveal">
+                    <p>L'Équitation, c'est une symbiose. Un accord de cœur à cœur.</p>
+                    <p>Une étreinte de l'éternel.</p>
+                    <p>Faire corps avec le cheval. Puis, s'amener à y faire cœur avec lui. S'effacer lentement pour le laisser s'exprimer entièrement.</p>
+                    <p>Créer une union parfaite pour en révéler les plus beaux contours. Un accord d'âme, une réponse de corps. Dévoilant sans se parler, d'égal à égal, le plus profond des dialogues.</p>
+                    <p>Alors, ce n'est plus une recherche de cœur entre le cavalier et sa monture lorsque les âmes se mêlent ; mais bel et bien la fragile intimité d'un dialogue de Centaure.</p>
+                </div>
+            </div>
+            <div class="approche-visuel reveal">
+                <img src="images/approche-livres.jpg" alt="Ouvrages d'équitation classique, gravures anciennes">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== APPROCHE SUITE (2 colonnes, fond bordeaux) ===== -->
+    <section class="approche-suite">
+        <div class="approche-suite-header">
+            <div class="approche-suite-filet">
+                <span class="approche-suite-ornement">&#10022;</span>
+            </div>
+            <span class="approche-suite-eyebrow">La pédagogie</span>
+        </div>
+        <div class="approche-suite-inner reveal">
+            <div class="approche-suite-col">
+                <p><span class="lettrine">C</span>'est tout là le choix pédagogique de Florian dans une entière écoute et bienveillance où le savoir de la posture, de la position, du geste, de la respiration ou encore du regard ont une immense importance. Rien n'est laissé au hasard.</p>
+                <p>Quel que soit votre niveau, tout est mis en œuvre pour vous apporter les connaissances nécessaires à l'évolution et l'harmonie de votre couple. Toujours dans une pédagogie passionnée et passionnante où l'amour côtoie la beauté du geste.</p>
+            </div>
+            <div class="approche-suite-col">
+                <p>L'Équitation, c'est comprendre par la technique, la théorie et la pratique. Facteurs fondamentaux d'une juste approche de corps, de cœur et d'esprit entre l'Homme et l'Animal.</p>
+                <p>La transmission commence par l'apprentissage du ressenti, de l'observation et des valeurs équestres. C'est cela aussi la belle Équitation.</p>
+                <p>La posture qu'adopte Florian avec les équidés l'amène à proposer des soins et des accompagnements par le cheval, pour celui-ci, ainsi que pour le cavalier. Apporter une approche encore plus profonde du lien millénaire entre les Hommes et les Chevaux.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DISCIPLINES ===== -->
+    <section class="disciplines">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Savoir-faire</span>
+            <h2 class="section-title">Disciplines &amp; <em>Arts équestres</em></h2>
+            <div class="section-filet">
+                <div class="filet-ligne"></div>
+                <div class="filet-diamant"></div>
+                <div class="filet-ligne"></div>
+            </div>
+            <p class="disciplines-sous-titre">Équitation de Tradition à la Française -- Équitation scénique et de ballet</p>
+        </div>
+        <div class="disciplines-grille">
+            <div class="disc-categorie reveal">
+                <h3 class="disc-categorie-titre">Équitation classique et académique</h3>
+                <ul class="disc-liste">
+                    <li>Équitation classique <p class="sous-detail">Travail de manège, compétitions</p></li>
+                    <li>Dressage Basse &amp; Haute École</li>
+                    <li>Équitation historique <p class="sous-detail">Maniements d'armes à cheval, exercices civils et militaires, travail de postures</p></li>
+                    <li>Sauts d'École <p class="sous-detail">Airs relevés, à pied et monté</p></li>
+                    <li>Monte en Amazone</li>
+                </ul>
+            </div>
+            <div class="disc-categorie reveal reveal-d1">
+                <h3 class="disc-categorie-titre">Travail à pied et en liberté</h3>
+                <ul class="disc-liste">
+                    <li>Longues Rênes <p class="sous-detail">De travail et académiques</p></li>
+                    <li>Travail à pied <p class="sous-detail">Éducation et figures circassiennes</p></li>
+                    <li>Travail du cheval en liberté <p class="sous-detail">Un ou plusieurs chevaux</p></li>
+                    <li>Attelage <p class="sous-detail">Un ou plusieurs chevaux</p></li>
+                </ul>
+            </div>
+            <div class="disc-categorie reveal">
+                <h3 class="disc-categorie-titre">Disciplines de spectacle</h3>
+                <ul class="disc-liste">
+                    <li>Voltige cosaque <p class="sous-detail">Ligne et cercle</p></li>
+                    <li>Disciplines de spectacle <p class="sous-detail">Jeux médiévaux, postes hongroises, chutes, feu</p></li>
+                </ul>
+            </div>
+            <div class="disc-categorie reveal reveal-d1">
+                <h3 class="disc-categorie-titre">Hiver et neige</h3>
+                <ul class="disc-liste">
+                    <li>Ski-Joëring <p class="sous-detail">Initiation et perfectionnement</p></li>
+                    <li>Attelage traîneau</li>
+                    <li>Poney-Luge <p class="sous-detail">Pour les enfants</p></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-final">
+        <div class="cta-final-inner reveal">
+            <span class="section-eyebrow">Prochaine étape</span>
+            <h2 class="section-title">Découvrir les <em>enseignements</em></h2>
+            <div class="section-filet">
+                <div class="filet-ligne"></div>
+                <div class="filet-diamant"></div>
+                <div class="filet-ligne"></div>
+            </div>
+            <p class="cta-final-texte">Cours, stages, académies... Florian propose un enseignement adapté à chaque cavalier, du débutant au professionnel.</p>
+            <div class="cta-final-buttons">
+                <a href="arts-equestres.html" class="btn-or">Enseignements</a>
+                <a href="/contact/" class="btn-or-outline">Contactez-moi</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grille">
+            <div class="footer-logo">
+                <img src="images/logo.avif" alt="Florian Poupin — Arts équestres">
+                <p class="footer-tagline">Enseignant diplômé, artiste pluridisciplinaire.</p>
+            </div>
+
+            <div>
+                <div class="footer-col-titre">Enseignements</div>
+                <ul class="footer-liens">
+                    <li><a href="cours-stages.html">Cours &amp; Stages</a></li>
+                    <li><a href="academie.html">Académie équestre</a></li>
+                    <li><a href="arts-equestres.html">Arts équestres</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="footer-col-titre">Conseils &amp; Expertise</div>
+                <ul class="footer-liens">
+                    <li><a href="/conseils-expertise/problematiques-resolution/">Problématique &amp; Résolution</a></li>
+                    <li><a href="/conseils-expertise/apprentissage-education/">Apprentissage &amp; Éducation</a></li>
+                    <li><a href="/soins-bien-etre/">Soins &amp; Bien-être</a></li>
+                    <li><a href="/soins-bien-etre/soins-par-le-cheval.html">Soins par le cheval</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="footer-col-titre">Contact</div>
+                <ul class="footer-liens">
+                    <li><a href="tel:0603880354">06 03 88 03 54</a></li>
+                    <li><a href="mailto:florianpoupin.equestre@gmail.com">florianpoupin.equestre@gmail.com</a></li>
+                    <li><a href="/contact/">Formulaire de contact</a></li>
+                    <li><a href="/mentions-legales/">Mentions légales</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bas">
+            <span class="footer-copy">&copy; 2026 Florian Poupin. Tous droits réservés.</span>
+            <span class="footer-contact">Longevilles-Mont-d'Or, Doubs (25370) &nbsp;|&nbsp; <a href="tel:0603880354">06 03 88 03 54</a></span>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

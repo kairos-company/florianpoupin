@@ -17,10 +17,16 @@
         body { font-family: 'EB Garamond', Georgia, serif; background: var(--blanc); color: var(--texte); overflow-x: hidden; }
 
         /* HEADER */
-        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 5rem; background: var(--bordeaux-fonce); transition: background 0.4s ease, backdrop-filter 0.4s; }
+        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 6.5rem; background: var(--bordeaux-fonce); transition: background 0.4s ease, backdrop-filter 0.4s; }
         .header.scrolled { background: rgba(26, 0, 8, 0.97); backdrop-filter: blur(12px); }
         .header-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-        .header-logo img { height: 5rem; width: auto; display: block; }
+        .header-logo img { height: 4.5rem; width: auto; display: block; }
+        .header-logo-texte {
+            height: 5rem;
+            width: auto;
+            margin-left: 0.5rem;
+        }
+
         .header-nav { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
         .header-nav > li { position: relative; }
         .header-nav a { font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blanc); text-decoration: none; opacity: 0.8; transition: opacity 0.2s, color 0.2s; }
@@ -51,7 +57,7 @@
         .filet-diamant { width: 6px; height: 6px; background: var(--or); transform: rotate(45deg); }
 
         /* BREADCRUMB */
-        .breadcrumb { margin-top: 5rem; padding: 0.9rem 3rem; background: var(--bordeaux-fonce); border-bottom: 1px solid rgba(201, 168, 76, 0.12); }
+        .breadcrumb { margin-top: 6.5rem; padding: 0.9rem 3rem; background: var(--bordeaux-fonce); border-bottom: 1px solid rgba(201, 168, 76, 0.12); }
         .breadcrumb ol { list-style: none; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
         .breadcrumb li { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
         .breadcrumb li + li::before { content: '/'; margin: 0 0.6rem; color: rgba(248, 245, 239, 0.25); }
@@ -169,7 +175,7 @@
     <!-- HEADER -->
     <header class="header" id="header">
         <a href="index.html" class="header-logo">
-            <img src="images/logo.avif" alt="Florian Poupin — Arts équestres">
+            <img src="images/logo-cheval.png" alt="Florian Poupin"><img src="images/logo-texte.png" alt="Florian Poupin — L'élégance des arts équestres à la française" class="header-logo-texte">
         </a>
         <nav>
             <ul class="header-nav">
@@ -370,7 +376,7 @@
         <div class="footer-grille">
             <div>
                 <div class="footer-logo">
-                    <img src="images/logo.avif" alt="Florian Poupin">
+                    <img src="images/logo-cheval.png" alt="Florian Poupin"><img src="images/logo-texte.png" alt="Florian Poupin" style="height:5rem;width:auto;margin-left:0.5rem;">
                 </div>
                 <p class="footer-tagline">Arts équestres, enseignement et soins. Une approche globale du cheval et du cavalier.</p>
             </div>

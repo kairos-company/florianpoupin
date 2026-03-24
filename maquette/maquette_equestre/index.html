@@ -222,6 +222,64 @@
             padding-left: 1.8rem;
         }
 
+        /* Sous-sous-menu (pages filles) */
+        .has-subdrop { position: relative; }
+
+        .has-subdrop > a::after {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-right: 1px solid currentColor;
+            border-bottom: 1px solid currentColor;
+            transform: rotate(-45deg);
+            margin-left: 8px;
+            opacity: 0.5;
+            vertical-align: middle;
+        }
+
+        .nav-subdropdown {
+            position: absolute;
+            top: -0.6rem;
+            left: 100%;
+            background: #1e0410;
+            border: 1px solid rgba(201,168,76,0.35);
+            min-width: 220px;
+            padding: 0.6rem 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transform: translateX(6px);
+        }
+
+        .has-subdrop:hover > .nav-subdropdown,
+        .has-subdrop:focus-within > .nav-subdropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        .nav-subdropdown li a {
+            display: block;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            opacity: 0.75;
+            border-left: 2px solid transparent;
+            transition: opacity 0.15s, border-color 0.15s, padding-left 0.15s;
+        }
+
+        .nav-subdropdown li a:hover {
+            opacity: 1;
+            color: var(--or);
+            border-left-color: var(--or);
+            padding-left: 1.8rem;
+        }
+
         .header-cta {
             color: var(--bordeaux) !important;
             background: var(--or);
@@ -1078,19 +1136,29 @@
         /* ===== FOOTER ===== */
         .footer {
             background: var(--bordeaux-fonce);
-            padding: 4.5rem 3rem 2rem;
+            padding: 2rem 3rem 2rem;
             border-top: 1px solid rgba(201, 168, 76, 0.18);
         }
 
         .footer-grille {
             display: grid;
-            grid-template-columns: 2.2fr 1fr 1fr 1fr;
+            grid-template-columns: auto 1fr;
             gap: 3rem;
-            padding-bottom: 3rem;
+            padding-bottom: 2rem;
             border-bottom: 1px solid rgba(248, 245, 239, 0.07);
+            align-items: start;
         }
 
-        .footer-logo img { height: 5rem; width: auto; margin-bottom: 1rem; }
+        .footer-logo { display: flex; align-items: flex-start; }
+        .footer-logo img { height: 30rem; width: auto; margin-top: -3rem; }
+
+        .footer-colonnes {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            align-self: center;
+            padding-top: 2rem;
+        }
 
         .footer-tagline {
             font-family: 'Cormorant Garamond', serif;
@@ -1213,10 +1281,17 @@
                 <li class="has-dropdown">
                     <a href="/enseignements/">Enseignements</a>
                     <ul class="nav-dropdown">
-                        <li><a href="arts-equestres.html">Arts équestres</a></li>
+                        <li class="has-subdrop">
+                            <a href="arts-equestres.html">Arts équestres</a>
+                            <ul class="nav-subdropdown">
+                                <li><a href="equitation-classique.html">Équitation classique</a></li>
+                                <li><a href="travail-pied-liberte.html">Travail à pied &amp; Liberté</a></li>
+                                <li><a href="spectacle.html">Spectacle équestre</a></li>
+                                <li><a href="hiver-neige.html">Équitation d'hiver &amp; Neige</a></li>
+                            </ul>
+                        </li>
                         <li><a href="cours-stages.html">Cours &amp; Stages</a></li>
                         <li><a href="academie.html">Académie équestre</a></li>
-
                     </ul>
                 </li>
 
@@ -1229,12 +1304,12 @@
                 </li>
 
                 <li class="has-dropdown">
-                    <a href="/soins-bien-etre/">Soins &amp; Bien-être</a>
+                    <a href="/soins-bien-etre/">Accompagnements</a>
                     <ul class="nav-dropdown">
-                        <li><a href="soins-cheval.html">Soins du cheval</a></li>
-                        <li><a href="soins-cavalier.html">Soins du cavalier</a></li>
-                        <li><a href="soins-couple.html">Soins du couple cheval-cavalier</a></li>
-                        <li><a href="soins-par-le-cheval.html">Soins par le cheval</a></li>
+                        <li><a href="soins-cheval.html">Cheval</a></li>
+                        <li><a href="soins-cavalier.html">Cavalier</a></li>
+                        <li><a href="soins-couple.html">Couple cheval-cavalier</a></li>
+                        <li><a href="soins-par-le-cheval.html">Par le cheval</a></li>
                     </ul>
                 </li>
 
@@ -1309,7 +1384,7 @@
                 <div class="disc-overlay"></div>
                 <div class="disc-content">
                     <span class="disc-num">02</span>
-                    <h3 class="disc-titre">Joutes &amp; Spectacle équestre</h3>
+                    <h3 class="disc-titre">Disciplines de spectacle</h3>
                     <p class="disc-desc">Joutes, jeux médiévaux, cheval de feu — l'équitation au service du grand spectacle vivant.</p>
                     <a href="/disciplines-equestres/" class="disc-lien">Explorer &rarr;</a>
                 </div>
@@ -1432,7 +1507,7 @@
                     <div class="form-card-detail">Cursus complet — 10 mois</div>
                 </a>
                 <a href="/accompagnements/" class="form-card reveal reveal-d2">
-                    <span class="form-card-label">Accompagnement</span>
+                    <span class="form-card-label">Accompagnements</span>
                     <div class="form-card-titre">Formule SYMBIOSE</div>
                     <div class="form-card-detail">Cheval &amp; cavalier — 2 jours</div>
                 </a>
@@ -1619,38 +1694,39 @@
     <footer class="footer">
         <div class="footer-grille">
             <div class="footer-logo">
-                <img src="images/logo-cheval.png" alt="Florian Poupin"><img src="images/logo-texte.png" alt="Florian Poupin" style="height:5rem;width:auto;margin-left:0.5rem;">
-                <p class="footer-tagline">Enseignant diplômé, artiste pluridisciplinaire.</p>
+                <img src="images/logo-footer.png" alt="Florian Poupin — Enseignement et accompagnement équestre">
             </div>
 
-            <div>
-                <div class="footer-col-titre">Enseignements</div>
-                <ul class="footer-liens">
-                    <li><a href="cours-stages.html">Cours &amp; Stages</a></li>
-                    <li><a href="academie.html">Académie équestre</a></li>
-                    <li><a href="arts-equestres.html">Arts équestres</a></li>
-                    <li><a href="/enseignements/examens-federaux/">Examens fédéraux</a></li>
-                </ul>
-            </div>
+            <div class="footer-colonnes">
+                <div>
+                    <div class="footer-col-titre">Enseignements</div>
+                    <ul class="footer-liens">
+                        <li><a href="cours-stages.html">Cours &amp; Stages</a></li>
+                        <li><a href="academie.html">Académie équestre</a></li>
+                        <li><a href="arts-equestres.html">Arts équestres</a></li>
+                        <li><a href="/enseignements/examens-federaux/">Examens fédéraux</a></li>
+                    </ul>
+                </div>
 
-            <div>
-                <div class="footer-col-titre">Conseils &amp; Expertise</div>
-                <ul class="footer-liens">
-                    <li><a href="problematiques-resolution.html">Problématique &amp; Résolution</a></li>
-                    <li><a href="apprentissage-education.html">Apprentissage &amp; Éducation</a></li>
-                    <li><a href="/soins-bien-etre/">Soins &amp; Bien-être</a></li>
-                    <li><a href="soins-par-le-cheval.html">Soins par le cheval</a></li>
-                </ul>
-            </div>
+                <div>
+                    <div class="footer-col-titre">Conseils &amp; Expertise</div>
+                    <ul class="footer-liens">
+                        <li><a href="problematiques-resolution.html">Problématique &amp; Résolution</a></li>
+                        <li><a href="apprentissage-education.html">Apprentissage &amp; Éducation</a></li>
+                        <li><a href="/soins-bien-etre/">Accompagnements</a></li>
+                        <li><a href="soins-par-le-cheval.html">Par le cheval</a></li>
+                    </ul>
+                </div>
 
-            <div>
-                <div class="footer-col-titre">Contact</div>
-                <ul class="footer-liens">
-                    <li><a href="tel:0603880354">06 03 88 03 54</a></li>
-                    <li><a href="mailto:florianpoupin.equestre@gmail.com">florianpoupin.equestre@gmail.com</a></li>
-                    <li><a href="/contact/">Formulaire de contact</a></li>
-                    <li><a href="/mentions-legales/">Mentions légales</a></li>
-                </ul>
+                <div>
+                    <div class="footer-col-titre">Contact</div>
+                    <ul class="footer-liens">
+                        <li><a href="tel:0603880354">06 03 88 03 54</a></li>
+                        <li><a href="mailto:florianpoupin.equestre@gmail.com">florianpoupin.equestre@gmail.com</a></li>
+                        <li><a href="/contact/">Formulaire de contact</a></li>
+                        <li><a href="/mentions-legales/">Mentions légales</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
